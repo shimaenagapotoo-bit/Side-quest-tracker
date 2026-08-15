@@ -29,10 +29,13 @@ if "quests" not in st.session_state:
 if "editing_id" not in st.session_state:
     st.session_state.editing_id = None
 
-# すでに登録済みのQuestにIDがなければ追加
+# すでに登録済みのQuestにIDやstatusがなければ追加
 for item in st.session_state.quests:
     if "id" not in item:
         item["id"] = str(uuid4())
+
+    if "status" not in item:
+        item["status"] = "ACTIVE"
 
 # --------------------
 # NEW QUEST
@@ -62,7 +65,8 @@ if st.button("START QUEST"):
             "id": str(uuid4()),
             "name": quest,
             "date": quest_date.isoformat(),
-            "category": category
+            "category": category,
+            "status": "ACTIVE"
         }
 
         st.session_state.quests.append(new_quest)
@@ -83,9 +87,25 @@ if st.session_state.quests:
     for item in st.session_state.quests:
 
         st.write(f"**{item['name']}**")
+
+        # Status表示
+        if item["status"] == "COMPLETE":
+            st.success("✅ COMPLETE")
+        else:
+            st.info("🎯 ACTIVE")
+
         st.caption(
             f"📅 {item['date']}　｜　{item['category']}"
         )
+
+        # ACTIVEのQuestだけCOMPLETEボタンを表示
+        if item["status"] == "ACTIVE":
+            if st.button(
+                "✅ COMPLETE",
+                key=f"complete_{item['id']}"
+            ):
+                item["status"] = "COMPLETE"
+                st.rerun()
 
         # 編集ボタン
         if st.button(
