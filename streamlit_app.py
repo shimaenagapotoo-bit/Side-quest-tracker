@@ -12,7 +12,7 @@ quest = st.text_input("What is your next quest?",
                       )
 category = st.selectbox(
     "Category",
-    ["Adventure","Learning","Fitness","Social","Creative"]
+    ["💰PUBLIC SERVICE","💪ATHLETE","🌎EXPLORE","🦕CURIOSITY","❤️GIVE","🤖BUILD","✍️CREATE"]
 )
 if st.button("START QUEST"):
     if quest : 
