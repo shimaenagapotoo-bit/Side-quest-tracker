@@ -1,6 +1,39 @@
+
+
+
+
+
+
+
+
 import streamlit as st
 from datetime import date
 from uuid import uuid4
+import gspread
+from google.oauth2.service_account import Credentials
+# Google Sheets 接続
+@st.cache_resource
+def connect_google_sheets():
+    credentials = Credentials.from_service_account_info(
+        dict(st.secrets["gcp_service_account"]),
+        scopes=[
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/drive",
+        ],
+    )
+
+    client = gspread.authorize(credentials)
+
+    spreadsheet = client.open("AY SIDE QUEST DATA")
+    worksheet = spreadsheet.worksheet("シート1")
+
+    return worksheet
+# 接続テスト
+try:
+    worksheet = connect_google_sheets()
+    st.success("✅ Google Sheets 接続成功！")
+except Exception as e:
+    st.error(f"Google Sheets 接続エラー: {e}")
 
 # --------------------
 # 基本設定
@@ -273,6 +306,25 @@ if st.button("START QUEST"):
         }
 
         st.session_state.quests.append(new_quest)
+        try:
+            worksheet = connect_google_sheets()
+
+            worksheet.append_row([
+                new_quest["id"],
+                new_quest["name"],
+                new_quest["date"],
+                new_quest["category"],
+                new_quest["status"],
+                new_quest["first_time"],
+                new_quest["solo"],
+                new_quest["courage"],
+                new_quest["xp"],
+            ])
+
+            st.success("☁️ Google Sheetsにも保存しました！")
+
+        except Exception as e:
+            st.error(f"Google Sheets保存エラー: {e}")
 
         st.success(
             f"QUEST ADDED: {quest}"
