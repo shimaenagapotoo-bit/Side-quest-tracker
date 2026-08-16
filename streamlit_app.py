@@ -69,6 +69,34 @@ def calculate_xp(item):
 
     return xp
 
+# --------------------
+# LEVEL判定
+# --------------------
+
+def get_level(xp):
+
+    if xp < 100:
+        return 1, "ROOKIE", 0, 100
+
+    elif xp < 250:
+        return 2, "CURIOUS", 100, 250
+
+    elif xp < 450:
+        return 3, "ADVENTURER", 250, 450
+
+    elif xp < 700:
+        return 4, "EXPLORER", 450, 700
+
+    elif xp < 1000:
+        return 5, "CHALLENGER", 700, 1000
+
+    elif xp < 1500:
+        return 6, "CREATOR", 1000, 1500
+
+    else:
+        return 7, "WAYFINDER", 1500, None
+    
+
 
 # --------------------
 # TOTAL XP
@@ -80,6 +108,112 @@ total_xp = sum(
 )
 
 st.metric("⭐ TOTAL XP", total_xp)
+
+# 現在のLEVELを計算
+level, level_name, level_start, level_end = get_level(total_xp)
+
+st.subheader(
+    f"🧭 LEVEL {level} — {level_name}"
+)
+
+if level_end is not None:
+
+    progress = (
+        (total_xp - level_start)
+        / (level_end - level_start)
+    )
+
+    st.progress(progress)
+
+    st.caption(
+        f"{total_xp} / {level_end} XP"
+    )
+
+else:
+
+    st.progress(1.0)
+
+    st.caption(
+        f"{total_xp} XP — Highest Level"
+    )
+
+# --------------------
+# GUIDE
+# --------------------
+
+with st.expander("ℹ️ AY SIDE QUEST GUIDE"):
+
+    st.subheader("⭐ XP SYSTEM")
+
+    st.write("""
+    **Quest Complete**：+10 XP
+
+    **First Time**：+10 XP
+
+    **Solo Challenge**：+10 XP
+
+    **Courage**
+    - ★1：+2 XP
+    - ★2：+4 XP
+    - ★3：+6 XP
+    - ★4：+8 XP
+    - ★5：+10 XP
+    """)
+
+    st.divider()
+
+    st.subheader("🔥 COURAGE GUIDE")
+
+    st.write("""
+    **★1 — COMFORT**  
+    ほぼ緊張しない。いつもの範囲。気軽にできる。
+
+    **★2 — SMALL STEP**  
+    少し新しい。多少迷うけど、そこまで怖くない。
+
+    **★3 — CHALLENGE**  
+    ちょっと勇気が必要。行く前に少し緊張する。
+
+    **★4 — OUTSIDE COMFORT ZONE**  
+    かなり迷う・緊張する。でも挑戦してみたい。
+
+    **★5 — BIG LEAP**  
+    怖い・かなり不安。それでも自分から挑戦する。
+    """)
+
+    st.divider()
+
+    st.subheader("🧭 LEVEL GUIDE")
+
+    st.write("""
+    **Lv.1 ROOKIE｜0–99 XP**  
+    まず動き始めた。
+
+    **Lv.2 CURIOUS｜100–249 XP**  
+    新しいものへ手を伸ばし始めた。
+
+    **Lv.3 ADVENTURER｜250–449 XP**  
+    自分から未知の経験を選ぶようになった。
+
+    **Lv.4 EXPLORER｜450–699 XP**  
+    複数分野で継続的に世界を広げている。
+
+    **Lv.5 CHALLENGER｜700–999 XP**  
+    Comfort Zoneの外へ出る挑戦が増えている。
+
+    **Lv.6 CREATOR｜1000–1499 XP**  
+    経験するだけでなく、自分で何かを生み出している。
+
+    **Lv.7 WAYFINDER｜1500 XP〜**  
+    自分に合う生き方を、自分で選び育てている。
+    """)
+
+    st.divider()
+
+    st.info(
+        "XPはあなたの価値を測るものではありません。"
+        "どれだけ試し、経験し、世界を広げたかを記録するものです。"
+    )
 
 
 # --------------------
@@ -350,4 +484,5 @@ else:
     st.write(
         "まだQuestはありません。"
     )
+
     
