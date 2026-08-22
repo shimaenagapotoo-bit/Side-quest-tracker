@@ -35,6 +35,14 @@ try:
 except Exception as e:
     st.error(f"Google Sheets 接続エラー: {e}")
 
+# Google SheetsからQuestを読み込む
+def load_quests_from_google_sheets():
+    worksheet = connect_google_sheets()
+
+    records = worksheet.get_all_records()
+
+    return records
+
 # --------------------
 # 基本設定
 # --------------------
@@ -57,7 +65,11 @@ st.write("EXPLORE WHO I CAN BECOME.")
 # --------------------
 
 if "quests" not in st.session_state:
-    st.session_state.quests = []
+    try:
+        st.session_state.quests = load_quests_from_google_sheets()
+    except Exception as e:
+        st.error(f"Quest読み込みエラー: {e}")
+        st.session_state.quests = []
 
 if "editing_id" not in st.session_state:
     st.session_state.editing_id = None
