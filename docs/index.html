@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#111b1a">
   <meta name="description" content="7つの世界に、ひとつずつ挑戦を記録する。プライバシー重視の端末内保存アプリ。">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-go/BzJh0IyStKpwLMWYoS2Sa1TDJoD94NUHPHxAmnZA='; style-src 'sha256-OMntHQqLS1ZViXXk8ZTJ+UmG3eziiVCWpY9rWaN07aU='; img-src data: blob:; font-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-vnjE0CjzwiaQPZUMoJTpfsTOObihK3WI8fA6jD9yEcQ='; style-src 'sha256-OMntHQqLS1ZViXXk8ZTJ+UmG3eziiVCWpY9rWaN07aU='; img-src data: blob:; font-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="no-referrer">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,6 +21,7 @@
     <header class="topbar">
       <div class="brand-symbol" aria-hidden="true">✳</div>
       <div class="brand"><strong>AY SIDE QUEST</strong><span>EXPLORE WHO I CAN BECOME.</span></div>
+      <button type="button" class="icon-button" data-action="open-guide" aria-label="はじめての方へ・使い方" title="使い方">?</button>
       <button id="header-lock" class="icon-button" type="button" aria-label="ロックする" hidden>⌁</button>
     </header>
     <main id="main" tabindex="-1" aria-live="polite"></main>
@@ -61,6 +62,17 @@
     </div>
     <p class="muted fineprint">Instagramの共有先は端末・アプリの対応状況によります。選べない場合は画像を保存してInstagramからアップロードしてください。</p>
   </dialog>
+  <dialog id="guide-dialog" class="dialog" aria-labelledby="guide-title">
+    <div class="dialog-head"><h2 id="guide-title">✦ はじめての方へ</h2><button type="button" class="icon-button" data-action="close-guide" aria-label="説明を閉じる">×</button></div>
+    <p class="muted small">AY SIDE QUESTは、7つの分野で「やってみたい」「やってみた」を記録して、自分の挑戦を振り返る無料のミニアプリです。</p>
+    <div class="choice-card"><strong>1. 記録の守り方を選ぼう</strong><p class="small muted">初回は「暗号化して開始」がおすすめ。自分だけの10文字以上のパスフレーズを設定してください。忘れると復元できないため、安全に保管しましょう。</p></div>
+    <div class="choice-card"><strong>2. 「＋ ADD QUEST」で挑戦を登録</strong><p class="small muted">クエスト名・日付・7分野のいずれかを選びます。初挑戦なら First Time、一人で挑戦するなら Solo にチェック。Courage（勇気度）は1〜5で記録できます。</p></div>
+    <div class="choice-card"><strong>3. 達成したら「COMPLETE」</strong><p class="small muted">XPが増えてレベルアップ！ HOMEでは分野別の記録を、YEARでは1年間の振り返りを見られます。XPはゲーム感覚で楽しむための目安です。</p></div>
+    <div class="choice-card"><strong>4. SNS共有は自分で選べる</strong><p class="small muted">記録カードの「共有」を押すとプレビューが表示されます。日付と感想は最初は共有されない設定です。内容を確認してから、Xへの投稿やInstagram向けの画像共有を選んでください。アプリ自体を友人に伝えるときは SETTINGS →「アプリのリンクを共有」。</p></div>
+    <div class="choice-card"><strong>🔐 個人情報と保存先について</strong><p class="small muted">メールアドレス・氏名・電話番号の登録は不要です。アプリ自体は利用者の記録を外部サーバーへ送信せず、同じ端末・ブラウザ内に保存します。ほかの利用者とは自動共有されず、端末間の同期もありません。暗号化モードなら保存する記録をパスフレーズで保護します。</p><p class="small muted">ただしGitHub Pagesの配信事業者は、サイトへのアクセス時にIPアドレスをセキュリティ目的で記録します。また端末やブラウザの侵害、コードの不正な変更などのリスクをゼロにはできません。個人情報や第三者の秘密は記録しないことをおすすめします。</p></div>
+    <div class="choice-card"><strong>💾 大事な記録はバックアップ</strong><p class="small muted">SETTINGS →「JSONバックアップを保存」で定期的に保管してください。暗号化なしのモードやCSV書き出しには記録がそのまま入るので、共有・保存先に注意してください。ブラウザのデータを消すと記録も失われる場合があります。</p></div>
+    <div class="button-row"><button class="button secondary" type="button" data-action="share-app">このアプリのリンクを共有</button><button class="button primary" type="button" data-action="close-guide">使ってみる →</button></div>
+  </dialog>
   <dialog id="setup-dialog" class="dialog" aria-labelledby="setup-title">
     <div class="dialog-head"><h2 id="setup-title">WELCOME, EXPLORER.</h2></div>
     <p>記録は端末内だけに保存。まず、守り方を選ぼう。</p>
@@ -70,6 +82,7 @@
     <button type="button" class="button primary full" data-action="setup-encrypted">暗号化して開始</button></div>
     <div class="choice-card"><strong>📱 端末内だけで使う（暗号化なし）</strong><p class="small muted">解除不要で手軽。ただし同じ端末・ブラウザを使える人には見られる可能性があります。</p><button type="button" class="button secondary full" data-action="setup-plain">暗号化なしで開始</button></div>
     <p class="muted fineprint">暗号化のパスフレーズを忘れると記録を復元できません。安全な場所に控えてください。ブラウザのデータ削除に備え、定期的なバックアップも必要です。</p>
+    <button type="button" class="button subtle full" data-action="open-guide">？ はじめての方へ：使い方・プライバシー</button>
   </dialog>
   <dialog id="unlock-dialog" class="dialog" aria-labelledby="unlock-title">
     <div class="dialog-head"><h2 id="unlock-title">PRIVATE VAULT 🔐</h2></div>
@@ -331,7 +344,8 @@ function renderSettings(){
   <button class="button secondary" data-action="import-backup">JSON / CSVを取り込む</button></section>
   <section class="settings-card"><h3>共有と公開</h3><p>クエストの共有は1件ずつプレビューしてから。感想と日付はデフォルトで共有しません。アプリ自体のリンクは共有できます。</p>
   <button class="button secondary" data-action="share-app">アプリのリンクを共有</button></section>
-  <section class="settings-card"><h3>ホーム画面・オフライン</h3><p>HTTPSで公開後、iPhoneのSafariで「共有」→「ホーム画面に追加」。一度読み込めばアプリの基本画面はオフラインでも開けます。</p></section>
+  <section class="settings-card"><h3>はじめての方へ</h3><p>使い方、記録の守り方、共有前に確認することをまとめました。</p><button class="button secondary" data-action="open-guide">使い方・プライバシーを見る</button></section>
+  <section class="settings-card"><h3>ホーム画面への追加</h3><p>iPhoneのSafariで「共有」→「ホーム画面に追加」。この単一HTML版はオフライン起動を保証しません。記録は端末内に残ります。</p></section>
   ${vault?`<section class="settings-card"><h3>プライバシーロック</h3><p>アプリを離れると自動ロックします。解除にパスフレーズが必要です。</p><button class="button secondary" data-action="lock">今すぐロック</button></section>`:''}
   <section class="settings-card"><h3>すべての記録を消去</h3><p>端末内のこのアプリの記録を削除します。ダウンロード済みのバックアップは消えません。</p><button class="button danger" data-action="clear-all">記録を完全に初期化</button></section>
   <p class="muted fineprint">初回のWebサイト閲覧時にはホスティング事業者へ接続します。IPアドレス等のアクセスログが残る可能性があります。記録本文を送信する設計ではありません。</p>`;
@@ -516,6 +530,8 @@ async function importFile(file){
 }
 async function handleAction(action, id){
   switch(action){
+    case 'open-guide':showDialog('guide-dialog');return;
+    case 'close-guide':closeDialog('guide-dialog');return;
     case 'setup-plain':{
       try{state.mode='plain';state.unlocked=true;await persistRecords([]);closeDialog('setup-dialog');notify('端末内で記録を開始しました');}
       catch(e){state.mode=null;state.unlocked=false;notify('保存を開始できません：'+e.message);}return;
