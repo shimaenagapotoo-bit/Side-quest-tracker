@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111b1a">
+  <meta name="description" content="7つの世界に、ひとつずつ挑戦を記録する。プライバシー重視の端末内保存アプリ。">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-go/BzJh0IyStKpwLMWYoS2Sa1TDJoD94NUHPHxAmnZA='; style-src 'sha256-OMntHQqLS1ZViXXk8ZTJ+UmG3eziiVCWpY9rWaN07aU='; img-src data: blob:; font-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SIDE QUEST">
+  <style>:root{color-scheme:dark;--bg:#101a19;--panel:#192724;--panel2:#20302c;--line:#344940;--text:#f2f3e9;--muted:#a5b6ae;--mint:#bed8a5;--accent:#d9f0b8;--danger:#eeafa3;--radius:18px;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:radial-gradient(circle at 5% -12%,#2a4437 0,transparent 40%),var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}button:disabled{opacity:.5;cursor:not-allowed}.shell{max-width:780px;margin:auto;min-height:100vh;padding-bottom:calc(98px + env(safe-area-inset-bottom,0px))}.topbar{display:flex;gap:13px;align-items:center;padding:calc(17px + env(safe-area-inset-top,0px)) 20px 20px}.brand-symbol{width:41px;height:41px;border-radius:14px;display:grid;place-items:center;border:1px solid #7b9a81;color:var(--accent);font-size:27px}.brand{display:grid;gap:2px;flex:1}.brand strong{font-size:16px;letter-spacing:.08em}.brand span{font-size:9px;letter-spacing:.19em;color:var(--muted)}main{padding:6px 18px 28px}.eyebrow{color:var(--mint);font-size:10px;letter-spacing:.19em;font-weight:700}.page-title{font-size:29px;letter-spacing:-.035em;line-height:1.2;margin:10px 0}.page-subtitle{color:var(--muted);font-size:13px;margin:0 0 20px}.hero{background:linear-gradient(140deg,#284437,#1b2c29 63%,#182723);padding:22px;border:1px solid #476655;border-radius:24px;margin:8px 0 17px;position:relative;overflow:hidden}.hero:after{content:"✳";position:absolute;right:-10px;top:-51px;font-size:180px;color:#e0eac2;opacity:.06;pointer-events:none}.hero h2{margin:8px 0;font-size:30px;letter-spacing:-.03em}.hero p{margin:0 0 17px;color:#d3e3d1;font-size:13px}.xp-line{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 7px;font-size:12px}.progress{height:7px;background:#415c4a;border-radius:10px;overflow:hidden}.progress span{height:100%;display:block;background:linear-gradient(90deg,#9fc38c,#e4efb8);border-radius:10px;max-width:100%}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:23px}.stat{border:1px solid var(--line);background:var(--panel);border-radius:17px;padding:13px 10px}.stat strong{display:block;font-size:24px;letter-spacing:-.04em}.stat small{color:var(--muted);font-size:10px;letter-spacing:.02em}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:25px 0 12px}.section-head h2{font-size:15px;letter-spacing:.025em;margin:0}.section-head button{border:0;background:none;color:var(--mint);font-size:12px}.category-list{display:grid;gap:12px}.category-item{display:grid;grid-template-columns:140px minmax(0,1fr) 22px;gap:8px;align-items:center;font-size:12px}.category-item .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bar{height:6px;border-radius:7px;background:#31443a;overflow:hidden}.bar span{height:100%;display:block;background:#a7c8a3;border-radius:7px}.category-item .count{text-align:right;color:var(--muted);font-size:11px}.button{border-radius:13px;min-height:43px;padding:10px 15px;border:1px solid transparent;font-weight:700;font-size:13px;display:inline-flex;align-items:center;justify-content:center;gap:8px}.button.primary{background:var(--accent);color:#17261d}.button.secondary{background:#283b33;border-color:#466454;color:var(--text)}.button.subtle{background:transparent;color:var(--muted);border-color:var(--line)}.button.danger{background:#3b2527;border:1px solid #79464d;color:#ffd4d4}.button.full{width:100%}.button.compact{min-height:34px;padding:6px 12px;font-size:12px}.button-row{display:flex;flex-wrap:wrap;gap:8px}.button-row>*{flex:1}.icon-button{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;width:36px;height:36px;font-size:25px;display:grid;place-items:center}.bottom-nav{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:780px;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);background:#15231feF;backdrop-filter:blur(14px);padding:11px 5px calc(10px + env(safe-area-inset-bottom,0px))}.bottom-nav button{border:0;background:transparent;color:#899f93;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;min-height:44px}.bottom-nav button[aria-current="page"]{color:var(--accent)}.bottom-nav span{font-size:23px;line-height:23px}.bottom-nav small{font-size:9px;font-weight:700;letter-spacing:.04em}.quest-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:10px}.quest-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.quest-card h3{margin:5px 0;font-size:16px;overflow-wrap:anywhere}.quest-card .meta{color:var(--muted);font-size:11px;margin:4px 0 8px}.quest-card .notes{font-size:12px;color:#c7d7cb;white-space:pre-wrap;overflow-wrap:anywhere}.tag{border:1px solid #496355;color:#c1dabe;border-radius:8px;font-size:10px;padding:3px 6px;display:inline-flex;align-items:center;gap:4px;margin-right:5px;margin-bottom:6px}.xp-pill{white-space:nowrap;font-size:12px;font-weight:750;color:var(--accent);border:1px solid #4d6650;border-radius:10px;padding:5px 7px}.muted{color:var(--muted)}.small{font-size:12px}.fineprint{font-size:11px;line-height:1.6}.empty{border:1px dashed #4e6658;border-radius:18px;padding:28px 18px;text-align:center;color:var(--muted);font-size:13px}.empty strong{display:block;color:var(--text);margin-bottom:7px}.toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}.toolbar .search{grid-column:1/-1}.toolbar input,.toolbar select,.field input,.field select,.field textarea{width:100%;min-height:43px;background:#23342e;color:var(--text);border:1px solid #496052;border-radius:11px;padding:10px;font-size:14px}.toolbar input::placeholder,.field input::placeholder,.field textarea::placeholder{color:#899c90}.field{display:grid;gap:7px;color:#d4e6d3;font-size:12px;font-weight:600;margin-bottom:13px}.field output{display:inline-block;color:var(--mint);font-weight:750}.field input[type="range"]{padding:0;min-height:24px;accent-color:var(--accent)}.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}.check-row{display:flex;flex-wrap:wrap;gap:13px;margin:8px 0 18px}.check-row label{font-size:12px;color:#d9e6d3}.check-row input{accent-color:var(--accent);transform:scale(1.1)}.dialog{border:1px solid #567363;border-radius:22px;padding:20px;background:#1a2926;color:var(--text);width:calc(100% - 26px);max-width:530px;max-height:min(90dvh,820px);overflow-y:auto;box-shadow:0 20px 80px #0009}.dialog::backdrop{background:#060b0ac9}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.dialog-head h2{font-size:17px;letter-spacing:.06em;margin:0}.dialog-actions{display:flex;gap:8px;justify-content:flex-end}.choice-card{border:1px solid #415b4b;border-radius:16px;padding:14px;margin:12px 0;background:#20312a}.choice-card strong{font-size:13px}.choice-card p{margin:6px 0 12px}.share-preview{margin:16px 0;padding:16px;background:#0e1a16;border:1px solid #425d4b;border-radius:13px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.8}.share-buttons{display:grid;gap:9px}.toast{position:fixed;bottom:calc(95px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,10px);width:max-content;max-width:calc(100% - 40px);background:#d8eac4;color:#193223;padding:12px 15px;border-radius:12px;font-size:12px;font-weight:700;z-index:60;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}.toast.visible{opacity:1;transform:translate(-50%,0)}.year-months{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}.month{text-align:center}.month .graph{height:96px;display:flex;align-items:flex-end;justify-content:center;background:#1a2b25;border-radius:9px;padding:5px}.month .graph span{width:100%;background:#accaaa;border-radius:5px 5px 3px 3px;min-height:2px}.month small{font-size:10px;color:var(--muted)}.year-controls{display:flex;justify-content:space-between;align-items:center;margin:10px 0 20px}.year-controls button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:9px;width:34px;height:34px}.privacy-card{background:#20392b;border:1px solid #568061;border-radius:16px;padding:14px;margin-bottom:20px}.privacy-card h3{font-size:14px;margin:0 0 7px}.privacy-card p{font-size:12px;margin:0;color:#c6dfc7}.settings-card,.code-card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:15px;margin:10px 0}.settings-card h3{font-size:14px;margin:0 0 8px}.settings-card p{font-size:12px;color:var(--muted);margin:0 0 12px}.settings-card .button{margin:3px 2px 3px 0}.code-selector{width:100%;border-radius:11px;padding:10px;background:#26382f;border:1px solid #577361;color:var(--text)}pre{background:#101c19;padding:14px;overflow:auto;white-space:pre;font-size:11px;line-height:1.65;border-radius:12px;border:1px solid #394f41;color:#d4efd5;tab-size:2}.error{color:var(--danger);font-size:12px}.stack{display:grid;gap:10px}.tiny-note{font-size:10px;color:var(--muted);margin-top:10px}.no-scroll{overflow:hidden}@media(min-width:580px){.category-item{grid-template-columns:200px 1fr 40px}.hero h2{font-size:36px}.year-months{grid-template-columns:repeat(12,1fr)}.stats{gap:13px}.stat{padding:16px}.stat strong{font-size:28px}}@media(max-width:350px){.brand span{letter-spacing:.08em}.category-item{grid-template-columns:118px minmax(0,1fr) 18px}.bottom-nav small{font-size:8px}.button{font-size:12px;padding:9px}}
+</style>
+  <title>AY SIDE QUEST — Explore who I can become.</title>
+
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand-symbol" aria-hidden="true">✳</div>
+      <div class="brand"><strong>AY SIDE QUEST</strong><span>EXPLORE WHO I CAN BECOME.</span></div>
+      <button id="header-lock" class="icon-button" type="button" aria-label="ロックする" hidden>⌁</button>
+    </header>
+    <main id="main" tabindex="-1" aria-live="polite"></main>
+    <nav class="bottom-nav" id="bottom-nav" aria-label="メインメニュー">
+      <button type="button" data-tab="home" aria-label="ホーム"><span>⌂</span><small>HOME</small></button>
+      <button type="button" data-tab="quests" aria-label="クエスト"><span>◇</span><small>QUESTS</small></button>
+      <button type="button" data-tab="year" aria-label="年間記録"><span>◷</span><small>YEAR</small></button>
+      <button type="button" data-tab="learn" aria-label="コードを学ぶ"><span>⌘</span><small>CODE</small></button>
+      <button type="button" data-tab="settings" aria-label="設定"><span>☷</span><small>SETTINGS</small></button>
+    </nav>
+  </div>
+  <dialog id="quest-dialog" class="dialog">
+    <form id="quest-form" method="dialog" novalidate>
+      <div class="dialog-head"><h2 id="quest-dialog-title">NEW QUEST</h2><button type="button" data-action="close-quest" class="icon-button" aria-label="閉じる">×</button></div>
+      <label class="field">クエスト名<input name="name" id="quest-name" maxlength="100" required placeholder="例：初めての登山に挑戦" autocomplete="off"></label>
+      <div class="two-cols">
+        <label class="field">日付<input type="date" name="date" id="quest-date" required></label>
+        <label class="field">カテゴリー<select name="category" id="quest-category"></select></label>
+      </div>
+      <div class="field">チャレンジの種類</div>
+      <div class="check-row"><label><input type="checkbox" name="first_time"> ✦ First Time</label><label><input type="checkbox" name="solo"> ◇ Solo</label></div>
+      <label class="field">COURAGE <output id="courage-out">3 / 5</output><input type="range" min="1" max="5" step="1" value="3" id="quest-courage" name="courage"></label>
+      <label class="field">メモ・気づき（任意）<textarea name="notes" id="quest-notes" maxlength="2000" rows="3" placeholder="自分が感じたことを残そう"></textarea></label>
+      <p class="muted small">保存した内容は、この端末内だけに記録されます。共有されることはありません。</p>
+      <div class="dialog-actions"><button type="button" class="button secondary" data-action="close-quest">キャンセル</button><button type="submit" class="button primary">保存する</button></div>
+    </form>
+  </dialog>
+  <dialog id="share-dialog" class="dialog">
+    <div class="dialog-head"><h2>SHARE YOUR QUEST</h2><button type="button" class="icon-button" data-action="close-share" aria-label="閉じる">×</button></div>
+    <p class="muted small">共有は自動では行いません。外部に渡す内容を確認してください。</p>
+    <div class="check-row share-choices"><label><input type="checkbox" id="share-category" checked> 分野</label><label><input type="checkbox" id="share-date"> 日付</label><label><input type="checkbox" id="share-notes"> 感想</label></div>
+    <div id="share-preview" class="share-preview"></div>
+    <div class="share-buttons">
+      <button type="button" class="button primary" data-action="share-image">画像を共有（Instagramなど）</button>
+      <button type="button" class="button secondary" data-action="share-x">Xに投稿する</button>
+      <button type="button" class="button secondary" data-action="save-image">共有画像を保存</button>
+      <button type="button" class="button subtle" data-action="copy-share">テキストをコピー</button>
+    </div>
+    <p class="muted fineprint">Instagramの共有先は端末・アプリの対応状況によります。選べない場合は画像を保存してInstagramからアップロードしてください。</p>
+  </dialog>
+  <dialog id="setup-dialog" class="dialog" aria-labelledby="setup-title">
+    <div class="dialog-head"><h2 id="setup-title">WELCOME, EXPLORER.</h2></div>
+    <p>記録は端末内だけに保存。まず、守り方を選ぼう。</p>
+    <div class="choice-card"><strong>🔐 おすすめ：暗号化して始める</strong><p class="small muted">パスフレーズでAES-GCM暗号化。アプリを開くときに解除します。</p>
+    <label class="field">パスフレーズ（10文字以上）<input id="setup-password" type="password" autocomplete="new-password" minlength="10" maxlength="128" placeholder="忘れない言葉を入力"></label>
+    <label class="field">確認用<input id="setup-confirm" type="password" autocomplete="new-password" minlength="10" maxlength="128"></label>
+    <button type="button" class="button primary full" data-action="setup-encrypted">暗号化して開始</button></div>
+    <div class="choice-card"><strong>📱 端末内だけで使う（暗号化なし）</strong><p class="small muted">解除不要で手軽。ただし同じ端末・ブラウザを使える人には見られる可能性があります。</p><button type="button" class="button secondary full" data-action="setup-plain">暗号化なしで開始</button></div>
+    <p class="muted fineprint">暗号化のパスフレーズを忘れると記録を復元できません。安全な場所に控えてください。ブラウザのデータ削除に備え、定期的なバックアップも必要です。</p>
+  </dialog>
+  <dialog id="unlock-dialog" class="dialog" aria-labelledby="unlock-title">
+    <div class="dialog-head"><h2 id="unlock-title">PRIVATE VAULT 🔐</h2></div>
+    <p>自分のクエスト記録を開こう。</p>
+    <label class="field">パスフレーズ<input id="unlock-password" type="password" maxlength="128" autocomplete="current-password"></label>
+    <button type="button" class="button primary full" data-action="unlock">解除する</button>
+    <p class="muted small">パスフレーズは外部に送信されません。記録も復号後に端末内でのみ表示します。</p>
+    <p id="unlock-error" class="error" role="alert"></p>
+  </dialog>
+  <input id="import-input" type="file" accept=".json,.csv,application/json,text/csv" hidden>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>/* AY SIDE QUEST PWA — local-first, no analytics, no external dependencies.
+   Read CODE_GUIDE.md to connect each UI action to these functions.
+   All user-provided text is escaped before inserting into HTML. */
+'use strict';
+
+const STORAGE_KEY = 'ay-side-quest-private-v1';
+const CATEGORIES = [
+  '🏛 PUBLIC SERVICE','🏃 ATHLETE','🌏 EXPLORE','🦖 CURIOSITY',
+  '❤️ GIVE','🤖 BUILD','✍️ CREATE'
+];
+const LEVELS = [[0,'ROOKIE'],[100,'CURIOUS'],[250,'ADVENTURER'],
+  [450,'EXPLORER'],[700,'CHALLENGER'],[1000,'CREATOR'],[1500,'WAYFINDER']];
+const MAX_RECORDS = 3000;
+const $ = (id) => document.getElementById(id);
+const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+const clamp = (n, a, b) => Math.max(a, Math.min(b, Number(n) || a));
+const dateToday = () => {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+};
+const isDate = x => {
+  if(!/^\d{4}-\d\d-\d\d$/.test(String(x)))return false;
+  const [y,m,d]=String(x).split('-').map(Number);
+  const dt=new Date(Date.UTC(y,m-1,d));
+  return dt.getUTCFullYear()===y&&dt.getUTCMonth()+1===m&&dt.getUTCDate()===d;
+};
+let state = { quests:[], tab:'home', year:new Date().getFullYear(),
+  query:'', category:'ALL', status:'ALL', selectedId:null, editingId:null,
+  mode:null, key:null, salt:null, unlocked:false, codeFocus:'calculateXP' };
+let toastTimer;
+
+// BUSINESS LOGIC: these four functions implement the same XP and level rules as quest_core.py.
+function calculateXP(quest) {
+  return quest.status === 'COMPLETE'
+    ? 10 + (quest.first_time ? 10 : 0) + (quest.solo ? 10 : 0) + 2 * clamp(quest.courage, 1, 5)
+    : 0;
+}
+function totalXP(quests) { return quests.reduce((sum, quest) => sum + calculateXP(quest), 0); }
+function getLevel(xp) {
+  const index = LEVELS.reduce((current, level, i) => xp >= level[0] ? i : current, 0);
+  const [start, name] = LEVELS[index];
+  return { number:index+1, name, start, next:LEVELS[index+1]?.[0] ?? null };
+}
+function categorySummary(quests) {
+  return CATEGORIES.map(category => ({ category,
+    completed: quests.filter(q=>q.category===category&&q.status==='COMPLETE').length,
+    active:quests.filter(q=>q.category===category&&q.status==='ACTIVE').length }));
+}
+function normalizeQuest(raw) {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) throw Error('記録データが不正です');
+  const name = String(raw.name || '').trim().slice(0,100);
+  if(!name) throw Error('クエスト名が空です');
+  const category = CATEGORIES.includes(raw.category) ? raw.category
+    : CATEGORIES.find(c=>c.endsWith(String(raw.category||'').trim())) || CATEGORIES[2];
+  const bool = x => x===true || /^(true|yes|1|はい)$/i.test(String(x||''));
+  return {
+    id:String(raw.id||crypto.randomUUID()).slice(0,80),
+    name, date:isDate(raw.date)?String(raw.date):dateToday(), category,
+    status:String(raw.status||'').toUpperCase()==='COMPLETE'?'COMPLETE':'ACTIVE',
+    first_time:bool(raw.first_time), solo:bool(raw.solo),
+    courage:clamp(Math.round(Number(raw.courage)||3),1,5),
+    notes:String(raw.notes||'').slice(0,2000),
+    completed_at:isDate(raw.completed_at)?String(raw.completed_at):''
+  };
+}
+
+// SECURITY: strong key derivation; passphrase is never saved or transmitted.
+const bytesToBase64 = bytes => btoa(String.fromCharCode(...bytes));
+const base64ToBytes = str => Uint8Array.from(atob(str), c => c.charCodeAt(0));
+async function deriveKey(passphrase, saltBytes) {
+  const material = await crypto.subtle.importKey('raw',new TextEncoder().encode(passphrase),
+    {name:'PBKDF2'},false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',hash:'SHA-256',salt:saltBytes,iterations:210000},
+    material,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
+}
+async function encryptRecords(quests, key, salt) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ciphertext = await crypto.subtle.encrypt({name:'AES-GCM',iv},key,
+    new TextEncoder().encode(JSON.stringify(quests)));
+  return {version:1,kind:'encrypted',kdf:'PBKDF2-SHA256',iterations:210000,
+    salt:bytesToBase64(salt),iv:bytesToBase64(iv),
+    data:bytesToBase64(new Uint8Array(ciphertext))};
+}
+async function decryptRecords(vault, password) {
+  if(!vault || vault.kind!=='encrypted' || vault.version!==1 ||
+    vault.kdf!=='PBKDF2-SHA256' || vault.iterations!==210000 ||
+    typeof vault.data!=='string' || vault.data.length>3000000) throw Error('バックアップ形式が不正です');
+  const salt=base64ToBytes(vault.salt),iv=base64ToBytes(vault.iv);
+  if(salt.length!==16||iv.length!==12) throw Error('暗号化データが不正です');
+  const key=await deriveKey(password,salt);
+  const plaintext=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,base64ToBytes(vault.data));
+  const decoded=JSON.parse(new TextDecoder().decode(plaintext));
+  if(!Array.isArray(decoded)||decoded.length>MAX_RECORDS) throw Error('記録が多すぎるか不正です');
+  return {key,salt,quests:decoded.map(normalizeQuest)};
+}
+async function persistRecords(nextRecords) {
+  if(nextRecords.length>MAX_RECORDS) throw Error('記録の上限（3000件）を超えます');
+  let payload;
+  if(state.mode==='encrypted') {
+    if(!state.key||!state.salt) throw Error('再度ロックを解除してください');
+    payload=await encryptRecords(nextRecords,state.key,state.salt);
+  } else if(state.mode==='plain') {
+    payload={version:1,kind:'plain',quests:nextRecords};
+  } else { throw Error('保存先が準備できていません'); }
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(payload));
+  state.quests=nextRecords;
+  render();
+}
+function notify(message) {
+  const el=$('toast');el.textContent=message;el.classList.add('visible');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),3400);
+}
+function showDialog(id) { const dialog=$(id); if(!dialog.open) dialog.showModal(); }
+function closeDialog(id) { const dialog=$(id); if(dialog.open) dialog.close(); }
+function lockVault() {
+  if(state.mode!=='encrypted'||!state.unlocked)return;
+  state.quests=[];state.key=null;state.salt=null;state.unlocked=false;
+  closeDialog('quest-dialog');closeDialog('share-dialog');render();showDialog('unlock-dialog');
+}
+async function initialize() {
+  try {
+    const stored=localStorage.getItem(STORAGE_KEY);
+    if(!stored){render();showDialog('setup-dialog');return;}
+    const data=JSON.parse(stored);
+    if(data.version!==1) throw Error('保存形式が異なります');
+    if(data.kind==='plain') {
+      if(!Array.isArray(data.quests)||data.quests.length>MAX_RECORDS) throw Error('保存データが不正です');
+      state.mode='plain';state.unlocked=true;state.quests=data.quests.map(normalizeQuest);render();
+    } else if(data.kind==='encrypted') {
+      state.mode='encrypted';render();showDialog('unlock-dialog');
+    } else {throw Error('保存形式が不正です');}
+  } catch(e) {
+    $('main').replaceChildren();
+    const message=document.createElement('div');message.className='empty';
+    message.textContent='保存データを読み込めません。ブラウザのデータを削除せず、バックアップの確認をしてください。\n'+e.message;
+    $('main').append(message);
+  }
+}
+
+function render() {
+  document.querySelectorAll('.bottom-nav button').forEach(button=>
+    button.setAttribute('aria-current',button.dataset.tab===state.tab?'page':'false'));
+  $('header-lock').hidden=!(state.mode==='encrypted'&&state.unlocked);
+  if(!state.unlocked){ $('main').innerHTML='<div class="empty"><strong>🔐 PRIVATE JOURNAL</strong>端末だけに記録する、自分だけの冒険ログ。</div>';return; }
+  const views={home:renderHome,quests:renderQuests,year:renderYear,learn:renderLearn,settings:renderSettings};
+  $('main').innerHTML=(views[state.tab]||renderHome)();
+  // Setting CSSOM properties here avoids inline style attributes, which CSP blocks.
+  $('main').querySelectorAll('[data-width]').forEach(el => {
+    el.style.width = `${clamp(el.dataset.width, 0, 100)}%`;
+  });
+  $('main').querySelectorAll('[data-height]').forEach(el => {
+    el.style.height = `${clamp(el.dataset.height, 0, 100)}%`;
+  });
+}
+function renderCategoryBars() {
+  const summary=categorySummary(state.quests),max=Math.max(1,...summary.map(c=>c.completed));
+  return `<div class="category-list">${summary.map(c=>
+    `<div class="category-item"><div class="name">${escapeHtml(c.category)}</div><div class="bar"><span data-width="${c.completed/max*100}"></span></div><div class="count">${c.completed}</div></div>`).join('')}</div>`;
+}
+function renderHome(){
+  const xp=totalXP(state.quests),lv=getLevel(xp),done=state.quests.filter(q=>q.status==='COMPLETE').length;
+  const nextPercent=lv.next===null?100:100*(xp-lv.start)/(lv.next-lv.start);
+  return `<div class="eyebrow">YOUR LIFE, YOUR SIDE QUESTS</div>
+  <section class="hero"><div class="eyebrow">✦ LEVEL ${lv.number}</div><h2>${escapeHtml(lv.name)}</h2>
+  <p>小さな挑戦が、あなたの世界を広げる。</p><div class="xp-line"><strong>${xp} XP</strong><span>${lv.next===null?'MAX LEVEL':`NEXT ${lv.next-xp} XP`}</span></div>
+  <div class="progress" aria-label="レベル達成率"><span data-width="${nextPercent}"></span></div></section>
+  <section class="stats"><div class="stat"><strong>${done}</strong><small>COMPLETE</small></div>
+  <div class="stat"><strong>${state.quests.length-done}</strong><small>IN PROGRESS</small></div>
+  <div class="stat"><strong>${state.quests.filter(q=>q.status==='COMPLETE'&&q.first_time).length}</strong><small>FIRST TIMES</small></div></section>
+  <button class="button primary full" data-action="new-quest">＋ START NEW QUEST</button>
+  <div class="section-head"><h2>7 WORLDS</h2><button data-tab="year">YEAR REVIEW →</button></div>
+  ${renderCategoryBars()}
+  <div class="section-head"><h2>RECENT QUESTS</h2><button data-tab="quests">VIEW ALL →</button></div>
+  ${state.quests.length ? [...state.quests].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,3).map(renderQuestCard).join('') :
+    '<div class="empty"><strong>最初の挑戦を記録しよう</strong>「START NEW QUEST」から始められるよ。</div>'}`;
+}
+function renderQuestCard(q) {
+  const tag=q.status==='COMPLETE'?'<span class="tag">✓ COMPLETE</span>':'<span class="tag">◇ ACTIVE</span>';
+  return `<article class="quest-card"><div class="quest-top"><div>${tag}<h3>${escapeHtml(q.name)}</h3>
+  <p class="meta">${escapeHtml(q.date)} · ${escapeHtml(q.category)}</p></div>
+  <span class="xp-pill">+${calculateXP(q)} XP</span></div>
+  <div>${q.first_time?'<span class="tag">✦ FIRST TIME</span>':''}${q.solo?'<span class="tag">◇ SOLO</span>':''}<span class="tag">COURAGE ${q.courage}/5</span></div>
+  ${q.notes?`<p class="notes">${escapeHtml(q.notes)}</p>`:''}
+  <div class="button-row">
+  <button class="button compact ${q.status==='ACTIVE'?'primary':'secondary'}" data-action="toggle-quest" data-id="${escapeHtml(q.id)}">${q.status==='ACTIVE'?'✓ COMPLETE':'↶ REOPEN'}</button>
+  <button class="button compact subtle" data-action="edit-quest" data-id="${escapeHtml(q.id)}">編集</button>
+  <button class="button compact subtle" data-action="open-share" data-id="${escapeHtml(q.id)}">↗ 共有</button>
+  <button class="button compact subtle" data-action="delete-quest" data-id="${escapeHtml(q.id)}">削除</button>
+  </div></article>`;
+}
+function renderQuests() {
+  const search=state.query.trim().toLowerCase();
+  const shown=[...state.quests].filter(q=>(!search||(q.name+' '+q.notes).toLowerCase().includes(search))&&
+    (state.category==='ALL'||q.category===state.category)&&
+    (state.status==='ALL'||q.status===state.status)).sort((a,b)=>b.date.localeCompare(a.date));
+  return `<div class="eyebrow">YOUR ADVENTURE LOG</div><h1 class="page-title">My Quests</h1>
+  <p class="page-subtitle">挑戦したことも、これからのことも。</p>
+  <button class="button primary full" data-action="new-quest">＋ ADD QUEST</button>
+  <div class="section-head"><h2>${shown.length} QUESTS</h2></div>
+  <div class="toolbar"><input class="search" id="search-quest" type="search" value="${escapeHtml(state.query)}" placeholder="クエストを検索…" aria-label="クエスト検索">
+  <select id="filter-category" aria-label="カテゴリーで絞る"><option value="ALL">すべての分野</option>${CATEGORIES.map(c=>`<option value="${escapeHtml(c)}" ${state.category===c?'selected':''}>${escapeHtml(c)}</option>`).join('')}</select>
+  <select id="filter-status" aria-label="状態で絞る"><option value="ALL">すべての状態</option><option value="ACTIVE" ${state.status==='ACTIVE'?'selected':''}>ACTIVE</option><option value="COMPLETE" ${state.status==='COMPLETE'?'selected':''}>COMPLETE</option></select></div>
+  ${shown.length?shown.map(renderQuestCard).join(''):'<div class="empty"><strong>該当する記録がありません</strong>検索条件を変更してみよう。</div>'}`;
+}
+function renderYear(){
+  const year=state.year,items=state.quests.filter(q=>q.date.startsWith(String(year)));
+  const done=items.filter(q=>q.status==='COMPLETE');
+  const monthly=Array.from({length:12},(_,i)=>done.filter(q=>Number(q.date.slice(5,7))===i+1).length);
+  const max=Math.max(1,...monthly);
+  return `<div class="eyebrow">LOOK HOW FAR YOU'VE COME</div><h1 class="page-title">Your Year</h1>
+  <p class="page-subtitle">1年の小さな冒険を、ひと目で。</p>
+  <div class="year-controls"><button data-action="previous-year" aria-label="前年">‹</button><strong>${year} — MY YEAR OF QUESTS</strong><button data-action="next-year" aria-label="翌年">›</button></div>
+  <div class="stats"><div class="stat"><strong>${done.length}</strong><small>COMPLETE</small></div><div class="stat"><strong>${done.filter(q=>q.first_time).length}</strong><small>FIRST TIMES</small></div><div class="stat"><strong>${done.reduce((n,q)=>n+calculateXP(q),0)}</strong><small>XP EARNED</small></div></div>
+  <div class="section-head"><h2>12 MONTHS</h2></div>
+  <div class="year-months">${monthly.map((n,i)=>`<div class="month"><div class="graph" title="${i+1}月 ${n}件"><span data-height="${n?Math.max(9,100*n/max):2}"></span></div><small>${i+1}月 · ${n}</small></div>`).join('')}</div>
+  <div class="section-head"><h2>COMPLETED QUESTS</h2></div>
+  ${done.length?done.sort((a,b)=>b.date.localeCompare(a.date)).map(renderQuestCard).join(''):
+    '<div class="empty">この年に完了したクエストは、まだありません。</div>'}`;
+}
+const CODE_EXAMPLES={
+  calculateXP:{title:'XPを計算する',explain:'ACTIVEでは0 XP。完了すると基本10 XPに、初体験・ひとり挑戦・勇気ボーナスを加える。',code:`function calculateXP(quest) {\n  return quest.status === 'COMPLETE'\n    ? 10 + (quest.first_time ? 10 : 0)\n         + (quest.solo ? 10 : 0)\n         + 2 * clamp(quest.courage, 1, 5)\n    : 0;\n}`},
+  add:{title:'記録を追加する',explain:'フォームから入力を読み取り、安全な形式に整えて、端末内の保存処理へ渡す。',code:`const newQuest = normalizeQuest({\n  id: crypto.randomUUID(),\n  name: form.name.value,\n  date: form.date.value,\n  category: form.category.value,\n  status: 'ACTIVE',\n  first_time: form.first_time.checked,\n  solo: form.solo.checked,\n  courage: Number(form.courage.value),\n  notes: form.notes.value\n});\nawait persistRecords([newQuest, ...state.quests]);`},
+  complete:{title:'COMPLETEで状態を変える',explain:'記録のstatusをCOMPLETEに変更。xpは保存値でなくcalculateXP()から毎回計算する。',code:`const updated = state.quests.map(q =>\n  q.id === selectedId ? {\n    ...q,\n    status: 'COMPLETE',\n    completed_at: dateToday()\n  } : q\n);\nawait persistRecords(updated);`},
+  level:{title:'レベルアップ判定',explain:'XPの合計が設定したしきい値を超えると、レベルが上がる。',code:`const LEVELS = [\n [0,'ROOKIE'],[100,'CURIOUS'],\n [250,'ADVENTURER'],[450,'EXPLORER'],\n [700,'CHALLENGER'],[1000,'CREATOR'],\n [1500,'WAYFINDER']\n];\nconst xp = totalXP(state.quests);\nconst level = getLevel(xp);`},
+  privacy:{title:'端末内に暗号化保存',explain:'パスフレーズを端末内で鍵に変え、AES-GCMで暗号化して保存。ログインや外部送信はしない。',code:`const key = await deriveKey(password, salt);\nconst encrypted = await crypto.subtle.encrypt(\n {name:'AES-GCM', iv}, key,\n new TextEncoder().encode(JSON.stringify(quests))\n);\nlocalStorage.setItem(STORAGE_KEY,\n JSON.stringify(encryptedVault));`},
+  share:{title:'共有は明示的な操作のみ',explain:'共有する項目を選び、プレビューした後、ボタンを押すことでのみ端末の共有シートが開く。',code:`const message = getShareText(quest);\n// User presses the share button.\nif (navigator.canShare?.({files:[image]})) {\n  await navigator.share({files:[image],\n    title:'MY SIDE QUEST'});\n}`},
+  summary:{title:'7分野を可視化する',explain:'カテゴリーごとに達成した記録を数える。誰かに統計情報を送る必要はない。',code:`const results = CATEGORIES.map(category => ({\n  category,\n  completed: quests.filter(q =>\n    q.category === category &&\n    q.status === 'COMPLETE'\n  ).length\n}));`}
+};
+function renderLearn(){
+  const current=CODE_EXAMPLES[state.codeFocus]||CODE_EXAMPLES.calculateXP;
+  return `<div class="eyebrow">LEARN BY BUILDING</div><h1 class="page-title">Code Lab</h1>
+  <p class="page-subtitle">自分の操作とコードのつながりを見てみよう。</p>
+  <div class="code-card"><label class="field" for="code-select">学ぶ機能</label><select id="code-select" class="code-selector">${Object.entries(CODE_EXAMPLES).map(([key,value])=>`<option value="${key}" ${state.codeFocus===key?'selected':''}>${escapeHtml(value.title)}</option>`).join('')}</select>
+  <h3>${escapeHtml(current.title)}</h3><p class="muted small">${escapeHtml(current.explain)}</p><pre><code>${escapeHtml(current.code)}</code></pre>
+  <p class="muted small">ここはスマホ版のJavaScript。以前のPython版の <code>quest_core.py</code> と対応するルールです。</p></div>
+  <button data-tab="quests" class="button primary full">実際にQUESTSで操作してみる →</button>`;
+}
+function renderSettings(){
+  const vault=state.mode==='encrypted';
+  return `<div class="eyebrow">OWN YOUR STORY</div><h1 class="page-title">Privacy & Data</h1>
+  <p class="page-subtitle">余計な情報を集めない、自分だけの記録アプリ。</p>
+  <div class="privacy-card"><h3>${vault?'🔐 暗号化モード：有効':'📱 端末内保存：有効（暗号化なし）'}</h3>
+  <p>アカウント・分析・広告・位置情報・クラウド同期を使用していません。${vault?'記録は端末内で暗号化して保存します。':'記録は端末内に保存されますが、パスフレーズでは保護されません。'}</p></div>
+  <section class="settings-card"><h3>バックアップ</h3><p>ブラウザのデータ削除や機種変更に備えて、定期的にバックアップを保存してください。${vault?'JSONバックアップは暗号化されたままです。':'JSONバックアップには記録が平文で入ります。'}</p>
+  <button class="button secondary" data-action="export-backup">JSONバックアップを保存</button>
+  <button class="button subtle" data-action="export-csv">CSVを保存（暗号化なし）</button>
+  <button class="button secondary" data-action="import-backup">JSON / CSVを取り込む</button></section>
+  <section class="settings-card"><h3>共有と公開</h3><p>クエストの共有は1件ずつプレビューしてから。感想と日付はデフォルトで共有しません。アプリ自体のリンクは共有できます。</p>
+  <button class="button secondary" data-action="share-app">アプリのリンクを共有</button></section>
+  <section class="settings-card"><h3>ホーム画面・オフライン</h3><p>HTTPSで公開後、iPhoneのSafariで「共有」→「ホーム画面に追加」。一度読み込めばアプリの基本画面はオフラインでも開けます。</p></section>
+  ${vault?`<section class="settings-card"><h3>プライバシーロック</h3><p>アプリを離れると自動ロックします。解除にパスフレーズが必要です。</p><button class="button secondary" data-action="lock">今すぐロック</button></section>`:''}
+  <section class="settings-card"><h3>すべての記録を消去</h3><p>端末内のこのアプリの記録を削除します。ダウンロード済みのバックアップは消えません。</p><button class="button danger" data-action="clear-all">記録を完全に初期化</button></section>
+  <p class="muted fineprint">初回のWebサイト閲覧時にはホスティング事業者へ接続します。IPアドレス等のアクセスログが残る可能性があります。記録本文を送信する設計ではありません。</p>`;
+}
+
+// FORM/UI ACTIONS
+function openQuestForm(id=null) {
+  const old=id?state.quests.find(q=>q.id===id):null;
+  state.editingId=old?.id||null;
+  $('quest-dialog-title').textContent=old?'EDIT QUEST':'NEW QUEST';
+  $('quest-category').innerHTML=CATEGORIES.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+  const form=$('quest-form');form.reset();
+  form.elements.name.value=old?.name||'';
+  form.elements.date.value=old?.date||dateToday();
+  form.elements.category.value=old?.category||CATEGORIES[2];
+  form.elements.first_time.checked=!!old?.first_time;
+  form.elements.solo.checked=!!old?.solo;
+  form.elements.courage.value=old?.courage||3;
+  form.elements.notes.value=old?.notes||'';
+  $('courage-out').textContent=`${form.elements.courage.value} / 5`;
+  showDialog('quest-dialog');
+}
+async function saveQuestForm(){
+  const form=$('quest-form');
+  const values={name:form.elements.name.value,date:form.elements.date.value,
+    category:form.elements.category.value,first_time:form.elements.first_time.checked,
+    solo:form.elements.solo.checked,courage:Number(form.elements.courage.value),
+    notes:form.elements.notes.value};
+  if(!values.name.trim()){notify('クエスト名を入力してください');return;}
+  if(!isDate(values.date)){notify('正しい日付を入力してください');return;}
+  if(!CATEGORIES.includes(values.category)){notify('カテゴリーが不正です');return;}
+  try{
+    const record=normalizeQuest({...values,
+      id:state.editingId||crypto.randomUUID(),
+      status:state.editingId?(state.quests.find(q=>q.id===state.editingId)?.status||'ACTIVE'):'ACTIVE',
+      completed_at:state.editingId?(state.quests.find(q=>q.id===state.editingId)?.completed_at||''):''});
+    const updated=state.editingId
+      ?state.quests.map(q=>q.id===state.editingId?record:q)
+      :[record,...state.quests];
+    await persistRecords(updated);
+    closeDialog('quest-dialog');notify(state.editingId?'クエストを更新しました':'クエストを追加しました');
+    state.codeFocus='add';state.editingId=null;
+  }catch(e){notify('保存できませんでした：'+e.message);}
+}
+async function toggleQuest(id){
+  const record=state.quests.find(q=>q.id===id);if(!record)return;
+  const toComplete=record.status==='ACTIVE';
+  try{
+    await persistRecords(state.quests.map(q=>q.id===id?{...q,
+      status:toComplete?'COMPLETE':'ACTIVE',
+      completed_at:toComplete?dateToday():''}:q));
+    state.codeFocus='complete';notify(toComplete?`達成！ +${10+(record.first_time?10:0)+(record.solo?10:0)+2*record.courage} XP`:'クエストをACTIVEに戻しました');
+  }catch(e){notify('変更を保存できません：'+e.message);}
+}
+async function deleteQuest(id){
+  const record=state.quests.find(q=>q.id===id);if(!record)return;
+  if(!window.confirm(`「${record.name}」を削除しますか？`))return;
+  try{await persistRecords(state.quests.filter(q=>q.id!==id));notify('削除しました');}
+  catch(e){notify('削除に失敗しました：'+e.message);}
+}
+function getSelectedQuest(){return state.quests.find(q=>q.id===state.selectedId);}
+function getShareText(q){
+  if(!q)return '';
+  const lines=['✳ AY SIDE QUEST',q.name];
+  if($('share-category').checked) lines.push(q.category);
+  if($('share-date').checked) lines.push(q.date);
+  if($('share-notes').checked && q.notes) lines.push(q.notes.slice(0,350));
+  lines.push('#AYSideQuest');return lines.join('\n');
+}
+function renderSharePreview(){const q=getSelectedQuest();$('share-preview').textContent=getShareText(q)||'共有する記録がありません';}
+function openShare(id){const q=state.quests.find(x=>x.id===id);if(!q)return;
+  state.selectedId=id;$('share-category').checked=true;$('share-date').checked=false;$('share-notes').checked=false;
+  renderSharePreview();showDialog('share-dialog');state.codeFocus='share';}
+function wrapCanvasText(ctx,text,maxWidth,maxLines){
+  const output=[];let line='';
+  for(const char of Array.from(String(text))){
+    if(char==='\n'){output.push(line);line='';continue;}
+    if(ctx.measureText(line+char).width>maxWidth&&line){output.push(line);line=char;}else{line+=char;}
+    if(output.length>=maxLines) break;
+  }
+  if(output.length<maxLines && line)output.push(line);
+  return output.slice(0,maxLines);
+}
+function makeShareFile(){
+  const q=getSelectedQuest();if(!q)throw Error('共有する記録がありません');
+  const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1920;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#14231f';ctx.fillRect(0,0,1080,1920);
+  ctx.fillStyle='#23382d';ctx.fillRect(65,250,950,1430);
+  ctx.strokeStyle='#54745b';ctx.lineWidth=3;ctx.strokeRect(65,250,950,1430);
+  ctx.fillStyle='#cde6ac';ctx.font='bold 43px sans-serif';ctx.fillText('✳   AY SIDE QUEST',95,174);
+  ctx.fillStyle='#a5b6ae';ctx.font='28px sans-serif';ctx.fillText('EXPLORE WHO I CAN BECOME.',95,216);
+  ctx.fillStyle='#cee8b4';ctx.font='bold 32px sans-serif';ctx.fillText(q.status === 'COMPLETE' ? 'QUEST COMPLETED  ✦' : 'MY NEXT QUEST  ◇',125,394);
+  ctx.fillStyle='#f5f5ec';ctx.font='bold 67px sans-serif';
+  wrapCanvasText(ctx,q.name,825,6).forEach((line,i)=>ctx.fillText(line,125,570+i*88));
+  let y=1160;ctx.font='34px sans-serif';ctx.fillStyle='#d9eace';
+  if($('share-category').checked){ctx.fillText(q.category,125,y);y+=75;}
+  if($('share-date').checked){ctx.fillText(q.date,125,y);y+=75;}
+  if($('share-notes').checked&&q.notes){ctx.font='30px sans-serif';wrapCanvasText(ctx,q.notes,830,6).forEach(line=>{ctx.fillText(line,125,y);y+=52;});}
+  ctx.font='32px sans-serif';ctx.fillStyle='#9dbba0';ctx.fillText('#AYSideQuest',125,1580);
+  // Synchronous encoding keeps the share() call within the user's click activation.
+  const dataUrl=canvas.toDataURL('image/png');
+  const bytes=Uint8Array.from(atob(dataUrl.split(',')[1]),c=>c.charCodeAt(0));
+  return new File([bytes],`side-quest-${q.date}.png`,{type:'image/png'});
+}
+function downloadFile(blob,filename){
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),8000);
+}
+async function shareImage(){
+  try{
+    const file=makeShareFile();
+    if(navigator.share&&navigator.canShare?.({files:[file]})){
+      await navigator.share({files:[file],title:'AY SIDE QUEST'});
+    } else {
+      downloadFile(file,file.name);
+      notify('画像を保存しました。Instagramなどにアップロードできます');
+    }
+  }catch(e){if(e.name!=='AbortError')notify('共有できませんでした。画像保存をお試しください');}
+}
+function shareToX(){
+  const text=getShareText(getSelectedQuest());
+  // External navigation occurs only after the user explicitly presses the X button.
+  const url=`https://twitter.com/intent/tweet?text=${encodeURIComponent(Array.from(text).slice(0,260).join(''))}`;
+  window.open(url,'_blank','noopener,noreferrer');
+}
+async function copyShare(){
+  const value=getShareText(getSelectedQuest());
+  try{await navigator.clipboard.writeText(value);notify('共有テキストをコピーしました');}
+  catch{window.prompt('ここからコピーしてください',value);}
+}
+function toCSV(records){
+  const cols=['id','name','date','category','status','first_time','solo','courage','xp','notes','completed_at'];
+  const escapeCell=x=>{
+    let val=String(x??'');
+    if(/^[\s\u0000-\u001f]*[=+\-@]/.test(val))val="'"+val; // spreadsheet formula injection guard
+    return '"'+val.replaceAll('"','""')+'"';
+  };
+  return '\ufeff'+[cols.join(','),...records.map(q=>cols.map(k=>escapeCell(k==='xp'?calculateXP(q):q[k])).join(','))].join('\r\n');
+}
+function parseCSV(text){
+  const rows=[];let row=[],part='',inQuotes=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(inQuotes){if(c==='"'&&text[i+1]==='"'){part+='"';i++;}else if(c==='"')inQuotes=false;else part+=c;}
+    else if(c==='"'){inQuotes=true;}
+    else if(c===','){row.push(part);part='';}
+    else if(c==='\n'){row.push(part.replace(/\r$/,''));rows.push(row);row=[];part='';}
+    else part+=c;
+  }
+  if(part||row.length){row.push(part.replace(/\r$/,''));rows.push(row);}
+  const headers=(rows.shift()||[]).map(s=>s.replace(/^\ufeff/,'').trim());
+  if(!headers.includes('name'))throw Error('CSVにname列がありません');
+  return rows.filter(r=>r.some(Boolean)).map(r=>Object.fromEntries(headers.map((h,i)=>[h,r[i]??''])));
+}
+function getDataForImport(raw,originalType){
+  const data=Array.isArray(raw)?raw:raw?.quests;
+  if(!Array.isArray(data)||data.length>MAX_RECORDS)throw Error(`${originalType}の記録数・形式が不正です`);
+  return data.map(normalizeQuest);
+}
+async function importFile(file){
+  if(!file||file.size>2*1024*1024){notify('2MB以下のJSONまたはCSVを選んでください');return;}
+  try{
+    const text=await file.text();let imported;
+    if(file.name.toLowerCase().endsWith('.csv'))imported=getDataForImport(parseCSV(text),'CSV');
+    else{
+      const data=JSON.parse(text);
+      if(data.kind==='encrypted'){
+        const pass=window.prompt('この暗号化バックアップのパスフレーズを入力してください（外部送信されません）');
+        if(!pass)return;
+        imported=(await decryptRecords(data,pass)).quests;
+      } else imported=getDataForImport(data.kind==='plain'?data.quests:data,'JSON');
+    }
+    const existing=new Set(state.quests.map(q=>q.id));
+    const additional=imported.filter(q=>!existing.has(q.id));
+    if(!additional.length){notify('新しく追加する記録はありません');return;}
+    if(!window.confirm(`${additional.length}件の記録を現在のデータに追加しますか？（既存の記録は残ります）`))return;
+    await persistRecords([...additional,...state.quests]);
+    notify(`${additional.length}件の記録を取り込みました`);
+  }catch(e){notify('取り込みに失敗しました：'+e.message);}
+}
+async function handleAction(action, id){
+  switch(action){
+    case 'setup-plain':{
+      try{state.mode='plain';state.unlocked=true;await persistRecords([]);closeDialog('setup-dialog');notify('端末内で記録を開始しました');}
+      catch(e){state.mode=null;state.unlocked=false;notify('保存を開始できません：'+e.message);}return;
+    }
+    case 'setup-encrypted':{
+      const pass=$('setup-password').value,confirm=$('setup-confirm').value;
+      if(pass.length<10){notify('パスフレーズは10文字以上にしてください');return;}
+      if(pass!==confirm){notify('パスフレーズが一致しません');return;}
+      if(!crypto?.subtle){notify('暗号化にはHTTPSまたはlocalhostが必要です');return;}
+      try{
+        state.salt=crypto.getRandomValues(new Uint8Array(16));state.key=await deriveKey(pass,state.salt);
+        state.mode='encrypted';state.unlocked=true;await persistRecords([]);
+        $('setup-password').value='';$('setup-confirm').value='';closeDialog('setup-dialog');notify('暗号化して保存を開始しました');
+      }catch(e){state.mode=null;state.key=null;state.salt=null;state.unlocked=false;notify('暗号化の設定に失敗：'+e.message);}return;
+    }
+    case 'unlock':{
+      try{
+        const vault=JSON.parse(localStorage.getItem(STORAGE_KEY));
+        const decrypted=await decryptRecords(vault,$('unlock-password').value);
+        state.mode='encrypted';state.key=decrypted.key;state.salt=decrypted.salt;state.quests=decrypted.quests;state.unlocked=true;
+        $('unlock-password').value='';$('unlock-error').textContent='';closeDialog('unlock-dialog');render();
+      }catch{$('unlock-error').textContent='解除できません。パスフレーズを確認してください。';}
+      return;
+    }
+    case 'lock':lockVault();return;
+    case 'new-quest':openQuestForm();return;
+    case 'edit-quest':openQuestForm(id);return;
+    case 'close-quest':closeDialog('quest-dialog');return;
+    case 'toggle-quest':await toggleQuest(id);return;
+    case 'delete-quest':await deleteQuest(id);return;
+    case 'open-share':openShare(id);return;
+    case 'close-share':closeDialog('share-dialog');return;
+    case 'share-image':await shareImage();return;
+    case 'save-image':try{const f=makeShareFile();downloadFile(f,f.name);notify('画像を保存しました');}catch(e){notify(e.message);}return;
+    case 'share-x':shareToX();return;
+    case 'copy-share':await copyShare();return;
+    case 'previous-year':state.year--;render();return;
+    case 'next-year':state.year++;render();return;
+    case 'export-backup':{
+      try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)throw Error('保存データがありません');
+        downloadFile(new Blob([raw],{type:'application/json'}),`ay-side-quest-backup-${dateToday()}.json`);
+        notify(state.mode==='encrypted'?'暗号化バックアップを保存しました':'JSONバックアップを保存しました（暗号化なし）');}
+      catch(e){notify('書き出しに失敗しました：'+e.message);}return;
+    }
+    case 'export-csv':{
+      if(!window.confirm('CSVには名前・感想などが暗号化されずに入ります。書き出しますか？'))return;
+      downloadFile(new Blob([toCSV(state.quests)],{type:'text/csv;charset=utf-8'}),`ay-side-quest-${dateToday()}.csv`);
+      notify('CSVを書き出しました');return;
+    }
+    case 'import-backup':$('import-input').value='';$('import-input').click();return;
+    case 'share-app':{
+      const url=location.href.split('#')[0];
+      try{if(navigator.share)await navigator.share({title:'AY SIDE QUEST',url});
+        else if(navigator.clipboard){await navigator.clipboard.writeText(url);notify('アプリのリンクをコピーしました');}
+        else window.prompt('アプリのURL',url);
+      }catch(e){if(e.name!=='AbortError')notify('リンクを共有できませんでした');}return;
+    }
+    case 'clear-all':{
+      if(!window.confirm('この端末内の全記録を消去します。バックアップを保存しましたか？'))return;
+      if(window.prompt('すべて消去する場合は DELETE と入力してください')!=='DELETE')return;
+      try{localStorage.removeItem(STORAGE_KEY);location.reload();}
+      catch(e){notify('消去に失敗しました：'+e.message);}return;
+    }
+  }
+}
+
+document.addEventListener('click', e=>{
+  const tabButton=e.target.closest('[data-tab]');
+  if(tabButton){if(!state.unlocked)return;state.tab=tabButton.dataset.tab;render();window.scrollTo(0,0);return;}
+  const button=e.target.closest('[data-action]');
+  if(button)handleAction(button.dataset.action,button.dataset.id);
+});
+$('header-lock').addEventListener('click',lockVault);
+$('quest-form').addEventListener('submit',e=>{e.preventDefault();saveQuestForm();});
+$('quest-courage').addEventListener('input',e=>$('courage-out').textContent=`${e.target.value} / 5`);
+$('import-input').addEventListener('change',e=>{if(e.target.files?.length)importFile(e.target.files[0]);});
+for(const name of ['share-category','share-date','share-notes'])$(name).addEventListener('change',renderSharePreview);
+document.addEventListener('input',e=>{
+  if(e.target.id==='search-quest'){
+    const cursor=e.target.selectionStart;state.query=e.target.value;render();
+    const input=$('search-quest');input.focus();input.setSelectionRange(cursor,cursor);
+  }
+});
+document.addEventListener('change',e=>{
+  if(e.target.id==='filter-category'){state.category=e.target.value;render();}
+  if(e.target.id==='filter-status'){state.status=e.target.value;render();}
+  if(e.target.id==='code-select'){state.codeFocus=e.target.value;render();}
+});
+// Do not dismiss first-use setup or an encrypted vault without authenticating.
+for(const dialogId of ['setup-dialog','unlock-dialog']){
+  $(dialogId).addEventListener('cancel',e=>e.preventDefault());
+}
+// Returning from another app locks the encrypted vault; no password is retained.
+document.addEventListener('visibilitychange',()=>{if(document.hidden)lockVault();});
+initialize();
+</script>
+</body>
+</html>
